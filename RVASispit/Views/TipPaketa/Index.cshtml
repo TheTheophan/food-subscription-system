@@ -1,0 +1,45 @@
+﻿@using System.Globalization
+@model IEnumerable<RVASispit.Models.TipPaketa>
+@{
+    ViewData["Title"] = "Tipovi Paketa";
+}
+
+<h2 class="text-center mb-4 mb-3">Tipovi Paketa</h2>
+
+<div class="d-flex justify-content-end">
+
+    <a asp-action="Create" class="btn btn-success">Dodaj novi tip paketa</a>
+
+</div>
+
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Naziv Paketa</th>
+            <th>Cena Mesecne Pretplate</th>
+            <th>Cena Godisnje Pretplate</th>
+            <th>Opis Paketa</th>
+            <th>Cena Rezervacije</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tipPaketa in Model)
+        {
+            <tr>
+                <td>@tipPaketa.nazivPaketa</td>
+                <td>@tipPaketa.cenaMesecnePretplate.ToString("C", new CultureInfo("sr-RS"))</td>
+                <td>@tipPaketa.cenaGodisnjePretplate.ToString("C", new CultureInfo("sr-RS"))</td>
+                <td>@tipPaketa.opisPaketa</td>
+                <td>@tipPaketa.cenaRezervacije.ToString("C", new CultureInfo("sr-RS"))</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tipPaketa.Id" class="btn btn-primary">Izmeni</a>
+                    <a asp-action="DeleteTipPaketa" asp-route-id="@tipPaketa.Id" class="btn btn-danger">Obriši</a>
+                    <a asp-action="DetailsTipPaketa" asp-route-id="@tipPaketa.Id" class="btn btn-info">Detalji</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

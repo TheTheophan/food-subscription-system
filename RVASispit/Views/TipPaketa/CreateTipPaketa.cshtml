@@ -1,0 +1,29 @@
+﻿@model RVASispit.Models.TipPaketa  
+@{  
+    ViewData["Title"] = "Novi TipPaketa";  
+}  
+
+<h2 class="text-center mb-4">Dodaj novi Tip Paketa</h2>  
+
+<form asp-action="CreateTipPaketa" method="post">  
+    <div class="form-group">  
+        <label asp-for="nazivPaketa" class="form-label">Naziv paketa</label>  
+        <input type="text" asp-for="nazivPaketa" class="form-control" placeholder="Unesite naziv paketa" />  
+
+        <label asp-for="cenaMesecnePretplate" class="form-label">Cena mesecne pretplate</label>  
+        <input type="number" asp-for="cenaMesecnePretplate" class="form-control" placeholder="Unesite cenu mesecne pretplate" />  
+
+        <label asp-for="cenaGodisnjePretplate" class="form-label">Cena godisnje pretplate</label>  
+        <input type="number" asp-for="cenaGodisnjePretplate" class="form-control" placeholder="Unesite cenu godisnje pretplate" />  
+
+        <label asp-for="opisPaketa" class="form-label">Opis paketa</label>  
+        <input type="text" asp-for="opisPaketa" class="form-control" placeholder="Unesite opis paketa" />  
+
+        <label asp-for="cenaRezervacije" class="form-label">Cena rezervacije</label>  
+        <input type="number" asp-for="cenaRezervacije" class="form-control" placeholder="Unesite cenu rezervacije" />  
+
+        <div class="d-flex justify-content-center mt-1">  
+            <button type="submit" class="btn btn-success">Kreiraj Tip Paketa</button>  
+        </div>  
+    </div>  
+</form>
