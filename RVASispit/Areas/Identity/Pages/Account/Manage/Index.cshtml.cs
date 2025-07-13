@@ -116,7 +116,43 @@ namespace RVASispit.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            await _signInManager.RefreshSignInAsync(user);
+            if(string.IsNullOrEmpty(user.imePrezime))
+            {
+                user.imePrezime = Input.imePrezime;
+                var updateResult = await _userManager.UpdateAsync(user);
+
+                if (!updateResult.Succeeded)
+                {
+                    StatusMessage = "Neuspešan unos imena i prezimena";
+                    return RedirectToPage();
+                }
+            }
+            else if (Input.imePrezime != user.imePrezime)
+            {
+                StatusMessage = "Ime i prezime ne može biti promenjeno, obratite se administratoru";
+                return RedirectToPage();
+            }
+
+
+            if (string.IsNullOrEmpty(user.adresaDostave))
+            {
+                user.adresaDostave = Input.adresaDostave;
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                {
+                    StatusMessage = "Neuspešan unos adrese dostave";
+                    return RedirectToPage();
+                }
+            }
+            else if (Input.adresaDostave != user.adresaDostave)
+            {
+                StatusMessage = "Adresa dostave ne može biti promenjena, obratite se administratoru";
+                return RedirectToPage();
+            }
+
+
+
+                await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
