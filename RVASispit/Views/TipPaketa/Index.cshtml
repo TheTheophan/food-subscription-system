@@ -7,12 +7,8 @@
 <h2 class="text-center mb-4 mb-3">Tipovi Paketa</h2>
 
 <div class="d-flex justify-content-end">
-
-    <a asp-action="Create" class="btn btn-success">Dodaj novi tip paketa</a>
-
+    <a asp-action="CreateTipPaketa" class="btn btn-success">Dodaj novi tip paketa</a>
 </div>
-
-
 
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -35,9 +31,14 @@
                 <td>@tipPaketa.opisPaketa</td>
                 <td>@tipPaketa.cenaRezervacije.ToString("C", new CultureInfo("sr-RS"))</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@tipPaketa.Id" class="btn btn-primary">Izmeni</a>
-                    <a asp-action="DeleteTipPaketa" asp-route-id="@tipPaketa.Id" class="btn btn-danger">Obriši</a>
-                    <a asp-action="DetailsTipPaketa" asp-route-id="@tipPaketa.Id" class="btn btn-info">Detalji</a>
+                    <div class="btn-group" role="group" style="gap: 0.5rem;">
+                        <a asp-action="Edit" asp-route-id="@tipPaketa.Id" class="btn btn-primary">Izmeni</a>
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@tipPaketa.Id" />
+                            <button type="submit" class="btn btn-danger">Obriši</button>
+                        </form>
+                        <a asp-action="Details" asp-route-id="@tipPaketa.Id" class="btn btn-info">Detalji</a>
+                    </div>
                 </td>
             </tr>
         }

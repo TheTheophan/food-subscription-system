@@ -1,0 +1,36 @@
+﻿@model RVASispit.Models.TipPaketa
+@{
+    ViewData["Title"] = "Detalji paketa";
+}
+
+<h2 class="text-center mb-4">Detalji paketa </h2>
+
+<p class="text-center">
+    <strong>Naziv paketa:</strong> @Model.nazivPaketa
+</p>
+<p class="text-center">
+    <strong>Cena mesecne pretplate
+        :
+    </strong> @Model.cenaMesecnePretplate.ToString("C", new System.Globalization.CultureInfo("sr-RS"))
+</p>
+<p class="text-center">
+    <strong>Cena godisnje pretplate:</strong> @Model.cenaGodisnjePretplate.ToString("C", new System.Globalization.CultureInfo("sr-RS"))
+    </p>
+<p class="text-center">
+    <strong>Opis paketa:</strong> @Model.opisPaketa
+</p>
+<p class="text-center">
+    <strong>Cena rezervacije:</strong> @Model.cenaRezervacije.ToString("C", new System.Globalization.CultureInfo("sr-RS"))
+</p>
+<div class="d-flex justify-content-center mt-4">
+    
+    <a asp-action="Index" class="btn btn-primary">Nazad na listu tipova paketa</a>
+    
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary ms-2">Izmeni tip paketa</a>
+    
+    <form asp-action="Delete" method="post" class="d-inline ms-2">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">Obriši tip paketa</button>
+    </form>
+
+</div>

@@ -7,17 +7,17 @@ namespace RVASispit.Controllers
 {
     public class TipPaketaController : Controller
     {
-        
+
         private readonly ApplicationDbContext _context;
         public TipPaketaController(ApplicationDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult CreateTipPaketa()
         {
-            return View(); 
+            return View();
         }
 
         [HttpPost]
@@ -98,5 +98,41 @@ namespace RVASispit.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var tipPaketa = await _context.TipPaketas.FindAsync(id);
+            if (tipPaketa == null)
+            {
+                return NotFound();
+            }
+            _context.TipPaketas.Remove(tipPaketa);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var tipPaketa = await _context.TipPaketas.FindAsync(id);
+            if (tipPaketa == null)
+            {
+                return NotFound();
+            }
+
+            var TipPaketa = new TipPaketa()
+            {
+                Id = tipPaketa.Id,
+                cenaGodisnjePretplate = tipPaketa.cenaGodisnjePretplate,
+                cenaMesecnePretplate = tipPaketa.cenaMesecnePretplate,
+                opisPaketa = tipPaketa.opisPaketa,
+                nazivPaketa = tipPaketa.nazivPaketa,
+                cenaRezervacije = tipPaketa.cenaRezervacije
+            };
+
+            return View(TipPaketa);
+
+        }
     }
 }
