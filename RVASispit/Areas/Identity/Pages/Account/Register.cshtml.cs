@@ -71,6 +71,8 @@ namespace RVASispit.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            public string? imePrezime { get; set; } = string.Empty;
+            public string? adresaDostave { get; set; } = string.Empty;
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,6 +116,18 @@ namespace RVASispit.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.imePrezime = Input.imePrezime;
+                user.adresaDostave = Input.adresaDostave;
+                if (string.IsNullOrEmpty(user.imePrezime))
+                {
+                    ModelState.AddModelError(string.Empty, "Ime i prezime su obavezna polja.");
+                    return Page();
+                }
+                if (string.IsNullOrEmpty(user.adresaDostave))
+                {
+                    ModelState.AddModelError(string.Empty, "Adresa dostave je obavezno polje.");
+                    return Page();
+                }
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

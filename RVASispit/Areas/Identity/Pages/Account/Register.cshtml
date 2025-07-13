@@ -13,6 +13,16 @@
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
+                <input asp-for="Input.imePrezime" class="form-control" aria-required="true" placeholder="unesite vaše ime i prezime" />
+                <label asp-for="Input.imePrezime">Ime i Prezime</label>
+                <span asp-validation-for="Input.imePrezime" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.adresaDostave" class="form-control" aria-required="true" placeholder="unesite vašu adresu za dostavu" />
+                <label asp-for="Input.adresaDostave">Adresa dostave</label>
+                <span asp-validation-for="Input.adresaDostave" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
