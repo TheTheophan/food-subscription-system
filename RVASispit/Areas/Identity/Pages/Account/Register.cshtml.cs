@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using RVASispit.Constants;
 using RVASispit.Models;
 
 namespace RVASispit.Areas.Identity.Pages.Account
@@ -135,6 +136,7 @@ namespace RVASispit.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user,Roles.User.ToString()); // Add user to the default role
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
