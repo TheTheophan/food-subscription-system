@@ -1,0 +1,26 @@
+﻿@model RVASispit.Models.ViewModels.PaketKorisnikaCreateViewModel
+@{
+    ViewData["Title"] = "Odaberite paket";
+}
+
+
+
+<h2>Odaberite paket</h2>
+
+<form asp-action="Create" method="post">
+    
+    <div class="mb-3">  
+        <label asp-for="TipPaketaID" class="form-label">Odaberite paket</label>
+        <select asp-for="TipPaketaID" class="form-control" asp-items="Model.TipPaketaList">
+            <option value="">-- Izaberite paket --</option>
+        </select>
+
+        <label asp-for="GodisnjaPretplata" class="form-label">Godišnja pretplata</label>
+        <input asp-for="GodisnjaPretplata" class="form-control" type="checkbox" />
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Potvrdi</button>
+
+
+</form>

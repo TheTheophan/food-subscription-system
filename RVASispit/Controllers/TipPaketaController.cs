@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RVASispit.Data;
 using RVASispit.Models;
 
 namespace RVASispit.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TipPaketaController : Controller
     {
 

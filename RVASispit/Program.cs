@@ -53,6 +53,11 @@ using (var scope = app.Services.CreateScope())
 {
     await DbSeeder.SeedRolesAsync(scope.ServiceProvider);
 }
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DbSeeder.SeedTipPaketaAsync(services);
+}
 
 app.MapRazorPages()
    .WithStaticAssets();
