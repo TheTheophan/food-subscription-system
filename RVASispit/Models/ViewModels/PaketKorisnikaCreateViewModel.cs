@@ -13,6 +13,11 @@ namespace RVASispit.Models.ViewModels
 
         public IEnumerable<TipPaketa> TipoviPaketa { get; set; }
 
-
+        internal class PaketKorisnika : Models.PaketKorisnika
+        {
+            public bool godisnjaPretplata { get; set; }
+            public int tipPaketaID { get; set; }
+            public string korisnikID { get; set; }
+        }
     }
 }

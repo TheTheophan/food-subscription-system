@@ -28,14 +28,13 @@ namespace RVASispit.Controllers
                 .Select(tp => new SelectListItem
                 {
                     Value = tp.Id.ToString(),
-                    Text = tp.nazivPaketa,
+                    Text = $"{tp.nazivPaketa} | Godišnja: {tp.cenaGodisnjePretplate.ToString("C", new System.Globalization.CultureInfo("sr-RS"))} | Mesečna: {tp.cenaMesecnePretplate.ToString("C", new System.Globalization.CultureInfo("sr-RS"))} | Rezervacija: {tp.cenaRezervacije.ToString("C", new System.Globalization.CultureInfo("sr-RS"))} | Opis: {tp.opisPaketa}"
                 })
                 .ToListAsync();
 
             var viewModel = new PaketKorisnikaCreateViewModel
             {
                 TipPaketaList = tipPaketaList
-                
             };
             return View(viewModel);
         }
